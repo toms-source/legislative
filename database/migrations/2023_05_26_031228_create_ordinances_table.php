@@ -14,14 +14,14 @@ return new class extends Migration
         Schema::create('ordinances', function (Blueprint $table) {
             $table->id();
             $table->string('ordinance_number');
-            $table->enum('tracking-level',['priority','of_interest','graveyard','passed']);
+            $table->enum('tracking_level',['priority','of_interest','graveyard','passed']);
             $table->string('title');
             $table->string('author');
             $table->date('date');
             $table->string('last_action');
             $table->date('last_action_date');
             $table->string('file_path');
-            $table->text('keywords');
+            $table->text('keywords')->nullable();
             $table->timestamps();
         });
     }
