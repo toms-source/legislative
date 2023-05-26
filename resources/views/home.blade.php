@@ -26,6 +26,7 @@
                         </div>
                     @endif
                     @livewire('oridnance-form')
+                    @livewire('ordinance-list')
                
                 </div>
             </div>
