@@ -56,6 +56,6 @@
 
         <!-- Add the rest of your form fields here in a similar manner -->
 
-        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+        <button type="submit" class="btn btn-primary mt-3 col-12z">Submit</button>
     </form>
 </div>
