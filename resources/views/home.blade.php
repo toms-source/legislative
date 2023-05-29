@@ -12,6 +12,8 @@
                     <button type="submit" class="btn btn-primary col-12 mt-2">EDIT ORDINANCE</button>
                     <button type="submit" class="btn btn-primary col-12 mt-2">VIEW ORDINANCE</button>
                 </div>
+
+
             </div>
         </div>
 
@@ -25,9 +27,10 @@
                             {{ session('status') }}
                         </div>
                     @endif
+
                     @livewire('oridnance-form')
+          
                     @livewire('ordinance-list')
-               
                 </div>
             </div>
         </div>
