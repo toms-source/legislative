@@ -9,8 +9,18 @@
     @livewireStyles
 </head>
 <body>
-    
-    @livewire('oridnance-form')
+
+   <div>
+        <h2 class="text-center">Ordinance Details</h2>
+        
+   </div>
+
+
+
+    <div class="container">
+        @livewire('ordinance-list')
+    </div>
+
     @livewireScripts
 </body>
 </html>

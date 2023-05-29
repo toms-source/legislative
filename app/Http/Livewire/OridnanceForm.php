@@ -27,7 +27,7 @@ class OridnanceForm extends Component
             'tracking_level' => 'required|in:priority,of_interest,graveyard,passed',
             'date' => 'required|date',
             'last_action' => 'required',
-            'file' => 'file|max:10024', // 1MB Max
+            'file' => 'file|max:10024', // 10MB Max
             'author' => 'required',
             'keywords' => 'nullable',
         ]);

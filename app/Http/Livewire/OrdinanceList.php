@@ -9,10 +9,13 @@ class OrdinanceList extends Component
 {
      
     protected $listener = ['ordinanceAdded'=>'render'];
-    
+    public $ordinanceS = '';
+
+
     public function render()
     {
-        $ordinances = Ordinance::all();
+        $ordinanceS = '%' . $this->ordinanceS . '%'; //%%
+        $ordinances = Ordinance::where('title','like', $ordinanceS)->orWhere('ordinance_number','like',$ordinanceS)->get();
         return view('livewire.ordinance-list', ['ordinances' => $ordinances]);
     }
 }
