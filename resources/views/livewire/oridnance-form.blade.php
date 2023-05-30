@@ -88,7 +88,7 @@
                             @enderror
                         </div>
 
-                        <button type="submit" class="btn btn-primary mt-3 col-12">Submit</button>
+                        <button type="submit" class="btn red mt-3 col-12">Submit</button>
                     </form>
                 </div>
             </div>

@@ -9,12 +9,12 @@
 
                 <div class="card-body">
                     @livewire('oridnance-form')
-                    <button type="submit" class="btn btn-primary col-12 mt-2">EDIT ORDINANCE</button>
-                    <button type="submit" class="btn btn-primary col-12 mt-2">VIEW ORDINANCE</button>
+                    <button type="submit" class="btn btn-danger col-12 mt-2"><i class="fa-duotone fa-pen"></i>EDIT ORDINANCE</button>
+                    <button type="submit" class="btn btn-success col-12 mt-2">VIEW ORDINANCE</button>
                     <hr class="hr"/>
                     <h3>Search:</h3>
                      @livewire('search-form')
-                    <button type="submit" class="btn btn-primary col-12 mt-2">SEARCH</button>
+                    <button type="submit" class="btn btn-outline-primary col-12 mt-2">SEARCH</button>
 
                 </div>
 
