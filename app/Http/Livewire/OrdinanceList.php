@@ -9,9 +9,19 @@ class OrdinanceList extends Component
 {
 
     public $searchTerm = '';
+    public $ordinances;
 
+    protected $listeners = ['searchTermUpdated' => 'search', 'ordinanceAdded' => 'refreshList'];
 
-    protected $listeners = ['searchTermUpdated' => 'search'];
+    public function mount()
+    {
+        $this->ordinances = Ordinance::all();
+    }
+
+    public function refreshList()
+    {
+        $this->ordinances = Ordinance::all();
+    }
 
     public function search($searchTerm)
     {
@@ -22,11 +32,6 @@ class OrdinanceList extends Component
 
     public function render()
     {
-        $searchTerm = '%' . $this->searchTerm . '%';
-        $ordinances = Ordinance::where('title', 'like', $searchTerm)
-            ->orWhere('ordinance_number', 'like', $searchTerm)
-            ->get();
-
-        return view('livewire.ordinance-list', ['ordinances' => $ordinances]);
+        return view('livewire.ordinance-list', ['ordinances' => $this->ordinances]);
     }
 }

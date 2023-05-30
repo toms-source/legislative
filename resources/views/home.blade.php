@@ -9,16 +9,13 @@
 
                 <div class="card-body">
                     @livewire('oridnance-form')
+        
                     <button type="submit" class="btn btn-primary col-12 mt-2">EDIT ORDINANCE</button>
                     <button type="submit" class="btn btn-primary col-12 mt-2">VIEW ORDINANCE</button>
-                    <hr class="hr"/>
-                    <h3>Search:</h3>
+                    <hr class="hr" style="border-top: 1px solid black;"/>
+                    <h4>Search:</h4>
                      @livewire('search-form')
-                    <button type="submit" class="btn btn-primary col-12 mt-2">SEARCH</button>
-
-                </div>
-
-               
+                </div>  
             </div>
         </div>
 
@@ -32,10 +29,8 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                  
-          
                     @livewire('ordinance-list')
+                   
                 </div>
             </div>
         </div>
