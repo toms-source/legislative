@@ -38,7 +38,7 @@ class OrdinanceList extends Component
     {
         return view('livewire.ordinance-list', ['ordinances' => $this->ordinances]);
     }
-    
+    // HEllo this is a new comment
     
     
 }
