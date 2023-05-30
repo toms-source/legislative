@@ -1,12 +1,5 @@
 
 <div>
-    <div class="form-group">
-    <input type="text" class="input form-control" id="search" wire:model.debounce.100ms="ordinanceS" />
-    @error('search') <span class="text-danger">{{ $message }}</span> @enderror
-
-    </div>
-
-
     <div class="mt-3">
         <table class="table table-striped table-bordered">
             <thead>
