@@ -8,13 +8,12 @@
                 <div class="card-header">{{ __('Action') }}</div>
 
                 <div class="card-body">
-                    
+                    @livewire('oridnance-form')
                     <button type="submit" class="btn btn-primary col-12 mt-2">EDIT ORDINANCE</button>
                     <button type="submit" class="btn btn-primary col-12 mt-2">VIEW ORDINANCE</button>
                     <hr class="hr"/>
                     <h3>Search:</h3>
-                    <input type="text" class="input form-control" id="search" wire:model.debounce.100ms="ordinanceS" />
-                    @error('search') <span class="text-danger">{{ $message }}</span> @enderror
+                     @livewire('search-form')
                     <button type="submit" class="btn btn-primary col-12 mt-2">SEARCH</button>
 
                 </div>
