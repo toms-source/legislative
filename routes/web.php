@@ -28,6 +28,10 @@ Route::get('/home', function () {
 })->named('home');
 
 
+Route::get('/view-ordinance/{ordinance}', function ($ordinance) {
+    $ordinance = App\Models\Ordinance::find($ordinance);
+    return view('livewire.view-ordinance', ['ordinance' => $ordinance]);
+})->name('view-ordinance');
 
 
 

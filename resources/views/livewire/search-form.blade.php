@@ -1,5 +1,5 @@
-<div>
-    <div class="form-group"></div>
-    <input type="text" class="form-control" id="search" placeholder="Title/Ordinance Number" wire:model="searchTerm" />
 
+
+<div class="form-group">
+    <input type="text" class="form-control" placeholder="Search" wire:model.debounce.100ms="searchTerm">
 </div>

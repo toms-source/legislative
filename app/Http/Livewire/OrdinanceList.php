@@ -26,12 +26,19 @@ class OrdinanceList extends Component
     public function search($searchTerm)
     {
         $this->searchTerm = $searchTerm;
-
-        // Perform your search here and update the list of ordinances
+    
+        $searchTerm = '%' . $this->searchTerm . '%';
+        $this->ordinances = Ordinance::where('title', 'like', $searchTerm)
+            ->orWhere('ordinance_number', 'like', $searchTerm)
+            ->get();
     }
-
+    
+    
     public function render()
     {
         return view('livewire.ordinance-list', ['ordinances' => $this->ordinances]);
     }
+    
+    
+    
 }
