@@ -43,9 +43,11 @@ class OrdinanceEdit extends Component
 
     public function mount()
     {
-        $data = Ordinance::find($this->ordinance_id);
+        $data = Ordinance::with('files')->find($this->ordinance_id);
 
         
+
+
 
         if ($data) {
 
@@ -60,8 +62,12 @@ class OrdinanceEdit extends Component
             $this->keywords = $data->keywords;
             $this->last_action_date = $data->last_action_date;
 
+            $file = $data->files->sortByDesc('version')->first();
+
             if ($file) {
-                $this->version = $file->version; // Get the file version from the file
+                $this->version = $file->version + 1; // Increment the version
+            } else {
+                $this->version = 1; // Start from 1 if there are no files
             }
         }
     }
