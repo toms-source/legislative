@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ordinance Details</title>
+    <title>Available Ordinance</title>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @livewireStyles
 
@@ -19,7 +19,7 @@
     </div>
     <div class="card m-5">
         <div class="">
-                <h2 class="text-center pt-5 fw-bold">Ordinance Details</h2>    
+                <h2 class="text-center pt-5 fw-bold">Available Ordinance</h2>    
         </div>
         <div class="container">
                 @livewire('ordinance-list')

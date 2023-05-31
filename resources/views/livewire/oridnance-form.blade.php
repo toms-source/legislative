@@ -1,5 +1,5 @@
 <div>
-    <button type="button" class="btn btn-primary col-12" data-toggle="modal" data-target="#addordinance">ADD
+    <button type="button" class="btn btn-primary col-12" data-toggle="modal" data-target="#addordinance"><i class="fa-solid fa-plus" style="color: #e6e6e6;"></i>ADD
         ORDINANCE</button>
 
 <!-- Hello -->
@@ -88,7 +88,7 @@
                             @enderror
                         </div>
 
-                        <button type="submit" class="btn red mt-3 col-12">Submit</button>
+                        <button type="submit" class="btn btn-success mt-3 col-12">Submit</button>
                     </form>
                 </div>
             </div>
