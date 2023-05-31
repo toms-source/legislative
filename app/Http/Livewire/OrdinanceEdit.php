@@ -35,18 +35,10 @@ class OrdinanceEdit extends Component
         $this->ordinance_id = $ordinanceId;
         $this->mount();
     }
-    // public function editversion($version)
-    // {
-    //     $this->version= $version;
-    //     $this->mount();
-    // }
-
+ 
     public function mount()
     {
         $data = Ordinance::with('files')->find($this->ordinance_id);
-
-        
-
 
 
         if ($data) {
@@ -97,10 +89,13 @@ class OrdinanceEdit extends Component
         $ordinance->title = $this->title;
         $ordinance->tracking_level = $this->tracking_level;
         $ordinance->date = $this->date;
-        $ordinance->last_action = $this->last_action;
-        $ordinance->last_action_date = now();
+
         $ordinance->author = $this->author;
         $ordinance->keywords = $this->keywords;
+
+
+
+        $this->last_action_date = now();
 
         if ($this->file) {
             $filePath = $this->file->store('files', 'public');
@@ -109,7 +104,9 @@ class OrdinanceEdit extends Component
             $ordinance->files()->create([
                 'file_path' => $filePath,
                 'version' => $this->version,
-            ]);
+                'last_action' => $this->last_action,
+                'last_action_date' => $this->last_action_date
+            ]); 
         }
 
         $ordinance->save();

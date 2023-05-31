@@ -8,7 +8,7 @@ class ViewOrdinance extends Component
 {
     public $ordinance;
     public $ordinance_id;
-    
+    public $file;
 
     protected $listeners = ['viewOrdinance' => 'viewOrdinance'];
 
@@ -20,7 +20,11 @@ class ViewOrdinance extends Component
 
     public function mount()
     {
-        $this->ordinance = Ordinance::with('files')->find($this->ordinance_id);
+        $data = Ordinance::with('files')->find($this->ordinance_id);
+        
+        if($data){
+            
+        }
     }
 
     public function render()
