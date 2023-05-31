@@ -45,22 +45,10 @@ class OrdinanceList extends Component
     public function searchDateBetween($searchDate){
         $searchDF = $searchDate[0];
         $searchDT = $searchDate[1];
-        if($this->searchTerm != ''){
-          $searchTerm =$this->searchTerm;
-
-            $query = Ordinance::query();
-            $query = Ordinance::whereBetween('date', [$searchDF, $searchDT]);
-
-            $this->ordinances = $query->where('ordinance_number', 'like', $searchTerm)
-            ->orWhere('tracking_level', 'like', $searchTerm)
-            ->orWhere('keywords', 'like', $searchTerm)
-            ->orWhere('author', 'like', $searchTerm)
-            ->get();
-        }
-       else{
+        
         $this->ordinances = Ordinance::whereBetween('date', [$searchDF, $searchDT])
         ->get();
-       }
+       
         // $searchDF1 = Carbon::parse($this->$searchDF);
         // $searchDT1 = Carbon::parse($this->$searchDT);
        

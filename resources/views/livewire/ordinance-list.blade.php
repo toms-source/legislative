@@ -19,7 +19,7 @@
                                 {{ $ordinance->title }}
                             </a></td>
                         <td class="text-uppercase">{{ $ordinance->tracking_level }}</td>
-                        <td>{{ $ordinance->created_at }}</td>
+                        <td>{{ $ordinance->date }}</td>
                 
                         <td> 
                             <button class="fa fa-edit border-0" data-target="#editordinance" type="button" data-toggle="modal" wire:click="editOrdinance({{ $ordinance->id }})"></button>

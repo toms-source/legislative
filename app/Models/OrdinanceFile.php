@@ -11,7 +11,9 @@ class OrdinanceFile extends Model
 
     protected $fillable  = [
         'file_path',
-        'version'
+        'version',
+        'last_action',
+        'last_action_date'
     ];
     public function files()
     {

@@ -16,6 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('ordinance_id');
             $table->string('file_path');
             $table->integer('version');
+            $table->string('last_action');
+            $table->date('last_action_date');
             $table->timestamps();
 
             $table->foreign('ordinance_id')->references('id')->on('ordinances')

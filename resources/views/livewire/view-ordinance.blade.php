@@ -11,27 +11,41 @@
                 <p><strong>Ordinance Number:</strong> {{ $ordinance->ordinance_number }}</p>
                 <p><strong>Tracking Level:</strong> {{ $ordinance->tracking_level }}</p>
                 <p><strong>Date:</strong> {{ $ordinance->date }}</p>
-                <p><strong>Last Action:</strong> {{ $ordinance->last_action }}</p>
+             
                 <p><strong>Author:</strong> {{ $ordinance->author }}</p>
                 <p><strong>Keywords:</strong> {{ $ordinance->keywords }}</p>
-                <p><strong>Last Action Date:</strong> {{ $ordinance->last_action_date }}</p>
+          
             </div>
             <div class="card-footer">
 
                 @if (isset($ordinance->files) && $ordinance->files->count() > 0)
                     <div>
-                        <h3>Previous Versions:</h3>
+                        <h5>Edit History:</h5>
                         <ul>
 
-                            @foreach ($ordinance->files as $file)
-                                <li class='mt-3'>
-                                    <a href="{{ asset('storage/' . $file->file_path) }}" target="_blank">Version
-                                        {{ $file->version }}</a>
-                                    <button class="btn btn-primary"
-                                        onclick="window.location.href='{{ asset('storage/' . $file->file_path) }}?download=1'">Download</button>
-
-                                </li>
-                            @endforeach
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th>Version</th>
+                                        <th>Last Action</th>
+                                        <th>Last Action Date</th>
+                                        <th>File</th>
+                                        <th>Download</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($ordinance->files as $file)
+                                        <tr class="text-center">
+                                            <td>{{ $file->version }}</td>
+                                            <td>{{ $file->last_action }}</td>
+                                            <td>{{ $file->last_action_date }}</td>
+                                            <td><a href="{{ asset('storage/' . $file->file_path) }}" target="_blank">View</a></td>
+                                            <td><button class="btn btn-primary" onclick="window.location.href='{{ asset('storage/' . $file->file_path) }}?download=1'">Download</button></td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            
 
 
                         </ul>

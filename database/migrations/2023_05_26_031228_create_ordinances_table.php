@@ -18,8 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('author');
             $table->date('date');
-            $table->string('last_action');
-            $table->date('last_action_date');
+
             $table->text('keywords')->nullable();
             $table->timestamps();
         });

@@ -30,8 +30,6 @@ class OridnanceForm extends Component
             'ordinance_number' => 'required|unique:ordinances,ordinance_number',
             'title' => 'required',
             'tracking_level' => 'required|in:priority,of_interest,graveyard,passed',
-            'date' => 'required|date',
-            'last_action' => 'required',
             'author' => 'required',
             'keywords' => 'nullable',
         ]);
@@ -49,8 +47,6 @@ class OridnanceForm extends Component
             'title' => $this->title,
             'tracking_level' => $this->tracking_level,
             'date' => $this->date,
-            'last_action' => $this->last_action,
-            'last_action_date' => $last_action_date,
             'author' => $this->author,
             'keywords' => $this->keywords,
         ]);
@@ -59,7 +55,9 @@ class OridnanceForm extends Component
 
         $ordinance->files()->create([
             'file_path' => $filePath,
-            'version' => 1 // initial version
+            'version' => 1, // initial version
+            'last_action' => $this->last_action,
+            'last_action_date' => $last_action_date,
         ]);
 
         $this->reset(['ordinance_number', 'title', 'tracking_level', 'date', 'last_action', 'last_action_date', 'file', 'author', 'keywords']);
