@@ -11,7 +11,13 @@ class OrdinanceList extends Component
     public $searchTerm = '';
     public $ordinances;
 
-    protected $listeners = ['searchTermUpdated' => 'search', 'ordinanceAdded' => 'refreshList'];
+    protected $listeners = ['searchTermUpdated' => 'search', 'ordinanceAdded' => 'refreshList', 'searchDate' => 'searchDateBetween'];
+
+    //pass id to another components
+    public function editOrdinance($ordinanceId)
+    {
+        $this->emit('editOrdinance', $ordinanceId);
+    }
 
     public function mount()
     {
@@ -30,9 +36,22 @@ class OrdinanceList extends Component
         $searchTerm = '%' . $this->searchTerm . '%';
         $this->ordinances = Ordinance::where('title', 'like', $searchTerm)
             ->orWhere('ordinance_number', 'like', $searchTerm)
+            ->orWhere('tracking_level', 'like', $searchTerm)
+            ->orWhere('keywords', 'like', $searchTerm)
+            ->orWhere('author', 'like', $searchTerm)
             ->get();
     }
     
+    public function searchDateBetween($searchDate){
+        $searchDF = $searchDate[0];
+        $searchDT = $searchDate[1];
+       
+       
+        // $searchDF1 = Carbon::parse($this->$searchDF);
+        // $searchDT1 = Carbon::parse($this->$searchDT);
+       
+        $this->ordinances = Ordinance::whereBetween('date', [$searchDF, $searchDT])->get();
+    }
     
     public function render()
     {

@@ -3,7 +3,6 @@
         <table class="table table-striped table-bordered">
             <thead>
                 <tr class="text-center">
-                  
                     <th>Ordinance Number</th>
                     <th>Title</th>
                     <th>Tracking Level</th>
@@ -22,7 +21,10 @@
                         <td class="text-uppercase">{{ $ordinance->tracking_level }}</td>
                         <td>{{ $ordinance->created_at }}</td>
                 
-                        <td> <i class="fa fa-edit"></i>   <a href="{{ route('view-ordinance', $ordinance) }}"><i class="fa fa-eye"></i></a></td>
+                        <td> 
+                            <button class="fa fa-edit border-0" data-target="#editordinance" type="button" data-toggle="modal" wire:click="editOrdinance({{ $ordinance->id }})"></button>
+                            <a href="{{ route('view-ordinance', $ordinance) }}"><i class="fa fa-eye"></i></a>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

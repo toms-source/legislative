@@ -20,7 +20,6 @@ return new class extends Migration
             $table->date('date');
             $table->string('last_action');
             $table->date('last_action_date');
-            $table->string('file_path');
             $table->text('keywords')->nullable();
             $table->timestamps();
         });

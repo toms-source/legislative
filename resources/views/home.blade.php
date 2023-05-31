@@ -17,7 +17,7 @@
                     <div class="mt-3">@livewire('search-form')</div>
                     
                     @livewire('ordinance-list')
-                   
+                    @livewire('ordinance-edit')
                 </div>
             </div>
         </div>
