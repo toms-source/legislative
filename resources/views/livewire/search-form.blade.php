@@ -3,8 +3,8 @@
 <div class="form-group">
     <input type="text" class="form-control" placeholder="Search" wire:model.debounce.100ms="searchTerm">
 </div>
-
-<div>
+<hr class="hr"/>
+<div class="mt-3">
         <div class="form-group">
             <label for="date">From:</label>
             <input type="date" class="form-control" id="dateFrom" wire:model="dateFrom">
@@ -12,7 +12,7 @@
                 <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
-        <div class="form-group">
+        <div class="form-group ">
             <label for="date">To:</label>
             <input type="date" class="form-control" id="dateTo" wire:model="dateTo">
             @error('date')

@@ -22,7 +22,8 @@
                 <h2 class="text-center pt-5 fw-bold">Available Ordinance</h2>    
         </div>
         <div class="container">
-                @livewire('ordinance-list')
+                <div class="mt-3">@livewire('search-form')</div>
+                @livewire('userview')
         </div>
    </div>
     @livewireScripts

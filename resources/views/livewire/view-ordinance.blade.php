@@ -9,7 +9,7 @@
             <div class="card-body">
                 <h3 class="text-center">{{ $ordinance->title }}</h3>
                 <p><strong>Ordinance Number:</strong> {{ $ordinance->ordinance_number }}</p>
-                <p><strong>Tracking Level:</strong> {{ $ordinance->tracking_level }}</p>
+                <p><strong>Tracking Level:</strong> <span class="text-uppercase" style="color: red">{{ $ordinance->tracking_level }} </span></p>
                 <p><strong>Date:</strong> {{ $ordinance->date }}</p>
              
                 <p><strong>Author:</strong> {{ $ordinance->author }}</p>
@@ -34,7 +34,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($ordinance->files as $file)
+                                    @foreach($ordinance->files->sortByDesc('version') as $file)
                                         <tr class="text-center">
                                             <td>{{ $file->version }}</td>
                                             <td>{{ $file->last_action }}</td>
