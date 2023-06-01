@@ -37,10 +37,14 @@
                                     @foreach($ordinance->files->sortByDesc('version') as $file)
                                         <tr class="text-center">
                                             <td>{{ $file->version }}</td>
+                                            @if(($file->file_path)==null)
+                                                <td colspan="4">No File Uploaded</td>
+                                            @else
                                             <td>{{ $file->last_action }}</td>
                                             <td>{{ $file->last_action_date }}</td>
                                             <td><a href="{{ asset('storage/' . $file->file_path) }}" target="_blank">View</a></td>
                                             <td><button class="btn btn-primary" onclick="window.location.href='{{ asset('storage/' . $file->file_path) }}?download=1'">Download</button></td>
+                                            @endif
                                         </tr>
                                     @endforeach
                                 </tbody>
