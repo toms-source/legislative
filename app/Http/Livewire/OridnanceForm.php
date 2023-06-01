@@ -22,8 +22,27 @@ class OridnanceForm extends Component
     public $last_action_date;
 
 
+    protected $listeners = [
+        'qrCodeFound' => 'createOrdinanceFromQr'
+    ];
+
+    public function createOrdinanceFromQr($data)
+    {
+      
+        $qrData = json_decode($data);
 
 
+        $this->ordinance_number = 'ORD-' . now()->format('Y') . '-' . rand(1000, 9999);
+
+
+        // Fill other fields
+        $this->title = $qrData->title;
+        $this->tracking_level = $qrData->tracking_level; 
+        $this->author = $qrData->author;  
+        $this->keywords = $qrData->keywords; 
+        $this->date = $qrData->date; 
+        $this->save();
+    }
     public function save()
     {
         $this->validate([
@@ -61,7 +80,7 @@ class OridnanceForm extends Component
         ]);
 
         $this->reset(['ordinance_number', 'title', 'tracking_level', 'date', 'last_action', 'last_action_date', 'file', 'author', 'keywords']);
-
+       
         $this->emit('ordinanceAdded');
     }
 
