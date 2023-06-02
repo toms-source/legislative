@@ -32,14 +32,22 @@
                             <div class="tab-pane fade show active" id="home" role="tabpanel"
                                 aria-labelledby="home-tab">
                                 <form wire:submit.prevent="save" method="post" class="mt-3">
-                                    <div class="form-group">
-                                        <label for="ordinance_number">Ordinance Number:</label>
-                                        <input type="text" class="form-control" id="ordinance_number"
-                                            wire:model="ordinance_number">
-                                        @error('ordinance_number')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
+                                    <div class="form-group row">
+                                        <div class="col-8">
+                                            <label for="ordinance_number">Ordinance Number:</label>
+                                            <input type="text" class="form-control" id="ordinance_number"
+                                                wire:model="ordinance_number">
+                                            @error('ordinance_number')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                        <div class="col-4 d-flex align-items-end">
+                                            <button type="button" class="btn btn-primary"
+                                                wire:click="generateOrdinanceNumber">Generate</button>
+                                        </div>
                                     </div>
+
+
 
                                     <div class="form-group">
                                         <label for="title">Title:</label>
@@ -227,7 +235,7 @@
             const viewOrdinanceLinkElement = document.querySelector('#viewOrdinanceLink');
             if (viewOrdinanceLinkElement) {
                 viewOrdinanceLinkElement.href = '/view-ordinance/' +
-                ordinanceId; // adjust this according to your actual route
+                    ordinanceId; // adjust this according to your actual route
             }
 
             var modalOrdinanceAdded = new bootstrap.Modal(document.getElementById(
