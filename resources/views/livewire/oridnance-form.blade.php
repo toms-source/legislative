@@ -134,7 +134,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    The ordinance has been successfully added.
+                    <p id="puthere"></p>
+                    <p>Click <a id="viewOrdinanceLink" href="">here</a> to view the added ordinance.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -167,7 +168,7 @@
                 .then(function(stream) {
                     video.srcObject = stream;
                     video.setAttribute("playsinline",
-                        true); 
+                        true);
                     video.play();
 
                     requestAnimationFrame(tick);
@@ -195,6 +196,7 @@
                 let data = JSON.parse(code.data);
                 if (data && data.title) {
                     @this.emit('qrCodeFound', code.data);
+
                 }
 
                 if (video.srcObject) {
@@ -211,16 +213,27 @@
 </script>
 <script>
     document.addEventListener('livewire:load', function() {
-        window.livewire.on('ordinanceAdded', () => {
+        window.livewire.on('ordinanceAdded', (ordinanceNumber, ordinanceId) => {
             console.log('ordinanceAdded event received');
 
             document.getElementById('addordinance').classList.remove('show');
             document.body.classList.remove('modal-open');
             document.getElementsByClassName('modal-backdrop')[0].remove();
 
+            document.querySelector('#ordinanceAddedModal .modal-body #puthere').textContent =
+                'The ordinance number ' + ordinanceNumber + ' has been successfully added.';
+
+            // Set the href of the "View Ordinance" link
+            const viewOrdinanceLinkElement = document.querySelector('#viewOrdinanceLink');
+            if (viewOrdinanceLinkElement) {
+                viewOrdinanceLinkElement.href = '/view-ordinance/' +
+                ordinanceId; // adjust this according to your actual route
+            }
+
             var modalOrdinanceAdded = new bootstrap.Modal(document.getElementById(
                 'ordinanceAddedModal'));
             modalOrdinanceAdded.show();
         });
+
     });
 </script>

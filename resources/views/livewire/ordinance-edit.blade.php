@@ -1,6 +1,7 @@
 <div>
     <div class="col-8">
-        <div class="modal fade" id="editordinance" tabindex="-1" role="dialog" aria-labelledby="editordinanceLabel" aria-hidden="true" wire:ignore>
+        <div class="modal fade" id="editordinance" tabindex="-1" role="dialog" aria-labelledby="editordinanceLabel"
+            aria-hidden="true" wire:ignore>
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -78,8 +79,7 @@
 
                                 <div class="form-group">
                                     <label for="keywords">Keywords:</label>
-                                    <input type="text" class="form-control" id="last_action"
-                                        wire:model="keywords">
+                                    <input type="text" class="form-control" id="last_action" wire:model="keywords">
                                     @error('keywords')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -93,4 +93,39 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="ordinanceEdited" tabindex="-1" role="dialog"
+        aria-labelledby="ordinanceAddedModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ordinanceAddedModalLabel">Ordinance Updated</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    The ordinance has been successfully updated.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<script>
+    document.addEventListener('livewire:load', function() {
+        window.livewire.on('ordinanceEdited', () => {
+            console.log('ordinanceAdded event received');
+
+            document.getElementById('editordinance').classList.remove('show');
+            document.body.classList.remove('modal-open');
+            document.getElementsByClassName('modal-backdrop')[0].remove();
+
+            var modalOrdinanceAdded = new bootstrap.Modal(document.getElementById(
+                'ordinanceEdited'));
+            modalOrdinanceAdded.show();
+        });
+    });
+</script>

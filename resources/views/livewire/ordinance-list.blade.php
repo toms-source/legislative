@@ -15,9 +15,15 @@
                     <tr class="text-center">
         
                         <td>{{ $ordinance->ordinance_number }}</td>
-                        <td><a href="{{ Storage::url($ordinance->file_path) }}" target="_blank">
-                                {{ $ordinance->title }}
-                            </a></td>
+                        <td> 
+                            @if(($ordinance->files->last()->file_path)==null)
+                            {{ $ordinance->title }}
+                            @else
+                            <a href="{{ asset('storage/' . $ordinance->files->last()->file_path) }}" target="_blank">
+                            {{ $ordinance->title }}
+                            @endif
+                        </a>
+                        </td>
                         <td class="text-uppercase">{{ $ordinance->tracking_level }}</td>
                         <td>{{ $ordinance->date }}</td>
                 

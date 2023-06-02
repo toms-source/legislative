@@ -20,6 +20,7 @@ class OridnanceForm extends Component
     public $keywords;
     public $file;
     public $last_action_date;
+    public $addedOrdinanceNumber;
 
 
     protected $listeners = [
@@ -32,7 +33,7 @@ class OridnanceForm extends Component
         $qrData = json_decode($data);
 
 
-        $this->ordinance_number = 'ORD-' . now()->format('Y') . '-' . rand(1000, 9999);
+        $this->ordinance_number = 'ORD-' . rand(1000, 9999) . '-' . now()->format('y');
 
 
         // Fill other fields
@@ -41,6 +42,9 @@ class OridnanceForm extends Component
         $this->author = $qrData->author;  
         $this->keywords = $qrData->keywords; 
         $this->date = $qrData->date; 
+
+
+       
         $this->save();
     }
     public function save()
@@ -78,10 +82,11 @@ class OridnanceForm extends Component
             'last_action' => $this->last_action,
             'last_action_date' => $last_action_date,
         ]);
-
+        $addedOrdinanceNumber = $this->ordinance_number;
         $this->reset(['ordinance_number', 'title', 'tracking_level', 'date', 'last_action', 'last_action_date', 'file', 'author', 'keywords']);
        
-        $this->emit('ordinanceAdded');
+        $this->emit('ordinanceAdded', $addedOrdinanceNumber,$ordinance->id);
+       
     }
 
 

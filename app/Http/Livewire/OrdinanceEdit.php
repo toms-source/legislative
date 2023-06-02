@@ -113,7 +113,7 @@ class OrdinanceEdit extends Component
 
         $this->reset(['ordinance_number', 'title', 'tracking_level', 'date', 'last_action', 'last_action_date', 'file', 'author', 'keywords']);
 
-        $this->emit('ordinanceAdded');
+        $this->emit('ordinanceEdited');
     }
 
 
