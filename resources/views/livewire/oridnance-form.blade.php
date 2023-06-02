@@ -33,7 +33,7 @@
                                 aria-labelledby="home-tab">
                                 <form wire:submit.prevent="save" method="post" class="mt-3">
                                     <div class="form-group row">
-                                        <div class="col-8">
+                                        <div class="col-9">
                                             <label for="ordinance_number">Ordinance Number:</label>
                                             <input type="text" class="form-control" id="ordinance_number"
                                                 wire:model="ordinance_number">
@@ -41,7 +41,7 @@
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
-                                        <div class="col-4 d-flex align-items-end">
+                                        <div class="col-3 d-flex align-items-end">
                                             <button type="button" class="btn btn-primary"
                                                 wire:click="generateOrdinanceNumber">Generate</button>
                                         </div>

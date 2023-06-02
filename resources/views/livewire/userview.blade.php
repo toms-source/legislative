@@ -16,17 +16,24 @@
         
                         <td>{{ $ordinance->ordinance_number }}</td>
                         <td>
-                            @if($ordinance->files->last())
+                            @if(($ordinance->files->last()->file_path)==null)
+                                    {{ $ordinance->title }}
+                            @else
                                 <a href="{{ asset('storage/' . $ordinance->files->last()->file_path) }}" target="_blank">
                                     {{ $ordinance->title }}
                                 </a>
-                            @else
-                                {{ $ordinance->title }}
                             @endif
                         </td>
                         <td class="text-uppercase">{{ $ordinance->tracking_level }}</td>
                         <td>{{ $ordinance->date }}</td>
-                        <td>{{ $ordinance->files->last()->last_action }}</td>
+                            
+                        <td>
+                            @if(($ordinance->files->last()->last_action)==null)
+                                <span class="text-danger">No Action Taken</span>
+                            @else
+                                {{ $ordinance->files->last()->last_action }}
+                            @endif
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
