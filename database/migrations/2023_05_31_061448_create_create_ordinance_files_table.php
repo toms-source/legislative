@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('ordinance_files', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('ordinance_id');
-            $table->string('file_path');
+            $table->string('file_path')->nullable();
             $table->integer('version');
-            $table->string('last_action');
-            $table->date('last_action_date');
+            $table->string('last_action')->nullable();
+            $table->date('last_action_date')->nullable();
             $table->timestamps();
 
             $table->foreign('ordinance_id')->references('id')->on('ordinances')
