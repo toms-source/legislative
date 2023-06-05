@@ -58,15 +58,24 @@ class Userview extends Component
     public function sortBy($field){
 
         if ($field == $this->sortField){
+            $this->sortField = $field;
             $this->sortDirection =  $this->sortDSwap();
+            if($this->sortDirection == 'desc'){
+                $this->ordinances =  $this->ordinances->sortBy($this->sortField);
+            }else{
+                $this->ordinances =  $this->ordinances->sortByDesc($this->sortField);
+            }
         }else{
+            $this->sortField = $field;
             $this->sortDirection = 'asc';
+            if($this->sortDirection == 'asc'){
+                $this->ordinances =  $this->ordinances->sortByDesc($this->sortField);
+            }else{
+                $this->ordinances =  $this->ordinances->sortBy($this->sortField);
+            }
         }
 
-        $this->sortField = $field;
         
-        $this->ordinances = Ordinance::orderBy($this->sortField, $this->sortDirection) ->get();
-
     } 
     public function sortDSwap(){
         return $this->sortDirection === 'asc' ? 'desc' : 'asc';
