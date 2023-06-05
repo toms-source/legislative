@@ -11,7 +11,9 @@ class Userview extends Component
     public $ordinance;
     public $searchTerm = '';
     public $ordinances;
-
+    public $sortField;
+    public $sortDirection='asc';
+    
     protected $listeners = ['searchTermUpdated' => 'search', 'ordinanceAdded' => 'refreshList', 'searchDate' => 'searchDateBetween'];
 
     //pass id to another components
@@ -51,6 +53,23 @@ class Userview extends Component
         $this->ordinances = Ordinance::whereBetween('date', [$searchDF, $searchDT])
             ->get();
 
+    }
+
+    public function sortBy($field){
+
+        if ($field == $this->sortField){
+            $this->sortDirection =  $this->sortDSwap();
+        }else{
+            $this->sortDirection = 'asc';
+        }
+
+        $this->sortField = $field;
+        
+        $this->ordinances = Ordinance::orderBy($this->sortField, $this->sortDirection) ->get();
+
+    } 
+    public function sortDSwap(){
+        return $this->sortDirection === 'asc' ? 'desc' : 'asc';
     }
     public function render()
     {

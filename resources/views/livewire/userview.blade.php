@@ -3,10 +3,10 @@
         <table class="table table-striped table-bordered">
             <thead>
                 <tr class="text-center">
-                    <th>Ordinance Number</th>
-                    <th>Title</th>
-                    <th>Tracking Level</th>
-                    <th>Date of Upload</th>
+                    <th wire:click="sortBy('ordinance_number')">Ordinance Number</th>
+                    <th wire:click="sortBy('title')">Title</th>
+                    <th wire:click="sortBy('tracking_level')">Tracking Level</th>
+                    <th wire:click="sortBy('date')">Date of Upload</th>
                     <th>Last Action</th>
                 </tr>
             </thead>
