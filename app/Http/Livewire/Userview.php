@@ -4,32 +4,25 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Ordinance;
-
+use Livewire\WithPagination;
 
 class Userview extends Component
 {
-    public $ordinance;
     public $searchTerm = '';
-    public $ordinances;
     public $sortField;
     public $sortDirection='asc';
     
     protected $listeners = ['searchTermUpdated' => 'search', 'ordinanceAdded' => 'refreshList', 'searchDate' => 'searchDateBetween'];
-
-    //pass id to another components
+    use WithPagination;
+    
     public function editOrdinance($ordinanceId)
     {
         $this->emit('editOrdinance', $ordinanceId);
     }
 
-    public function mount()
-    {
-        $this->ordinances = Ordinance::all();
-    }
-
     public function refreshList()
     {
-        $this->ordinances = Ordinance::all();
+        // We don't need to fetch all the ordinances here anymore
     }
 
     public function search($searchTerm)
@@ -37,12 +30,7 @@ class Userview extends Component
         $this->searchTerm = $searchTerm;
 
         $searchTerm = '%' . $this->searchTerm . '%';
-        $this->ordinances = Ordinance::where('title', 'like', $searchTerm)
-            ->orWhere('ordinance_number', 'like', $searchTerm)
-            ->orWhere('tracking_level', 'like', $searchTerm)
-            ->orWhere('keywords', 'like', $searchTerm)
-            ->orWhere('author', 'like', $searchTerm)
-            ->get();
+        $this->resetPage(); // Reset the pagination
     }
 
     public function searchDateBetween($searchDate)
@@ -50,38 +38,42 @@ class Userview extends Component
         $searchDF = $searchDate[0];
         $searchDT = $searchDate[1];
 
-        $this->ordinances = Ordinance::whereBetween('date', [$searchDF, $searchDT])
-            ->get();
-
+        $this->resetPage(); // Reset the pagination
     }
 
-    public function sortBy($field){
-
-        if ($field == $this->sortField){
-            $this->sortField = $field;
-            $this->sortDirection =  $this->sortDSwap();
-            if($this->sortDirection == 'desc'){
-                $this->ordinances =  $this->ordinances->sortBy($this->sortField);
-            }else{
-                $this->ordinances =  $this->ordinances->sortByDesc($this->sortField);
-            }
-        }else{
+    public function sortBy($field)
+    {
+        if ($field == $this->sortField) {
+            $this->sortDirection =  $this->sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
             $this->sortField = $field;
             $this->sortDirection = 'asc';
-            if($this->sortDirection == 'asc'){
-                $this->ordinances =  $this->ordinances->sortByDesc($this->sortField);
-            }else{
-                $this->ordinances =  $this->ordinances->sortBy($this->sortField);
-            }
         }
 
-        
-    } 
-    public function sortDSwap(){
-        return $this->sortDirection === 'asc' ? 'desc' : 'asc';
+        $this->resetPage(); // Reset the pagination
     }
+
     public function render()
     {
-        return view('livewire.userview');
+        $query = Ordinance::query();
+
+        // Add searching functionality
+        if (!empty($this->searchTerm)) {
+            $searchTerm = '%' . $this->searchTerm . '%';
+            $query = $query->where('title', 'like', $searchTerm)
+                           ->orWhere('ordinance_number', 'like', $searchTerm)
+                           ->orWhere('tracking_level', 'like', $searchTerm)
+                           ->orWhere('keywords', 'like', $searchTerm)
+                           ->orWhere('author', 'like', $searchTerm);
+        }
+
+        // Add sorting functionality
+        if (!empty($this->sortField)) {
+            $query = $query->orderBy($this->sortField, $this->sortDirection);
+        }
+
+        return view('livewire.userview', [
+            'ordinances' => $query->paginate(5),
+        ]);
     }
 }

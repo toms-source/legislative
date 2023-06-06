@@ -9,6 +9,7 @@ class OrdinanceList extends Component
 {
 
     public $searchTerm = '';
+    public $idDelete = '';
     public $ordinances;
 
     protected $listeners = ['searchTermUpdated' => 'search', 'ordinanceAdded' => 'refreshList', 'searchDate' => 'searchDateBetween'];
@@ -54,7 +55,22 @@ class OrdinanceList extends Component
        
         
     }
-    
+
+    public function deleteForm(){
+        $this->emit('ordinanceDelete');
+    }
+
+
+    public function deleteOrdinance($id){
+
+        $this->idDelete = $id;
+        $id = '%' . $this->idDelete . '%';
+        $this->ordinances = Ordinance::where('id', 'like', $id)->delete();
+        $this->ordinances = Ordinance::with('files')->where('id', 'like', $id)->delete();
+        
+        $this->refreshList();
+    }
+
     public function render()
     {
         return view('livewire.ordinance-list', ['ordinances' => $this->ordinances]);

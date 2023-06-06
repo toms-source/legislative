@@ -11,9 +11,8 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($this->ordinances as $ordinance)
+                @foreach($ordinances as $ordinance)
                     <tr class="text-center">
-        
                         <td>{{ $ordinance->ordinance_number }}</td>
                         <td>
                             @if(($ordinance->files->last()->file_path)==null)
@@ -38,8 +37,6 @@
                 @endforeach
             </tbody>
         </table>
+            {{ $ordinances->links() }}
     </div>
-
- 
-
 </div>
