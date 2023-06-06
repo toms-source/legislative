@@ -37,6 +37,7 @@
                 @endforeach
             </tbody>
         </table>
-            {{ $ordinances->links() }}
+            <div class="fs-6"> {{ $ordinances->links() }}</div>
+           
     </div>
 </div>

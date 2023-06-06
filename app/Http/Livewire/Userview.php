@@ -11,6 +11,8 @@ class Userview extends Component
     public $searchTerm = '';
     public $sortField;
     public $sortDirection='asc';
+    public $searchDF;
+    public $searchDT;
     
     protected $listeners = ['searchTermUpdated' => 'search', 'ordinanceAdded' => 'refreshList', 'searchDate' => 'searchDateBetween'];
     use WithPagination;
@@ -35,10 +37,10 @@ class Userview extends Component
 
     public function searchDateBetween($searchDate)
     {
-        $searchDF = $searchDate[0];
-        $searchDT = $searchDate[1];
-
-        $this->resetPage(); // Reset the pagination
+        $this->searchDF = $searchDate[0];
+        $this->searchDT = $searchDate[1];
+        
+        $this->render(); // Reset the pagination
     }
 
     public function sortBy($field)
@@ -58,19 +60,46 @@ class Userview extends Component
         $query = Ordinance::query();
 
         // Add searching functionality
+        
         if (!empty($this->searchTerm)) {
-            $searchTerm = '%' . $this->searchTerm . '%';
-            $query = $query->where('title', 'like', $searchTerm)
+            if (!empty($this->searchDF)) {
+                $searchTerm = '%' . $this->searchTerm . '%';
+                $query = $query->whereBetween('date',[$this->searchDF,$this->searchDT])
+                               ->orWhere('title', 'like', $searchTerm)
+                               ->orWhere('ordinance_number', 'like', $searchTerm)
+                               ->orWhere('tracking_level', 'like', $searchTerm)
+                               ->orWhere('keywords', 'like', $searchTerm)
+                               ->orWhere('author', 'like', $searchTerm);
+            }else{
+                $searchTerm = '%' . $this->searchTerm . '%';
+                $query = $query->where('title', 'like', $searchTerm)
                            ->orWhere('ordinance_number', 'like', $searchTerm)
                            ->orWhere('tracking_level', 'like', $searchTerm)
                            ->orWhere('keywords', 'like', $searchTerm)
                            ->orWhere('author', 'like', $searchTerm);
+            }
+            
+        }else if (!empty($this->searchDF)) {
+            
+            if (!empty($this->searchTerm)) {
+                $searchTerm = '%' . $this->searchTerm . '%';
+                $query = $query->whereBetween('date',[$this->searchDF,$this->searchDT])
+                               ->orWhere('title', 'like', $searchTerm)
+                               ->orWhere('ordinance_number', 'like', $searchTerm)
+                               ->orWhere('tracking_level', 'like', $searchTerm)
+                               ->orWhere('keywords', 'like', $searchTerm)
+                               ->orWhere('author', 'like', $searchTerm);
+            }else{
+                $query = $query->whereBetween('date',[$this->searchDF,$this->searchDT]);
+            }
         }
 
         // Add sorting functionality
         if (!empty($this->sortField)) {
             $query = $query->orderBy($this->sortField, $this->sortDirection);
         }
+
+        
 
         return view('livewire.userview', [
             'ordinances' => $query->paginate(5),
