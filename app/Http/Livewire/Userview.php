@@ -64,12 +64,14 @@ class Userview extends Component
         if (!empty($this->searchTerm)) {
             if (!empty($this->searchDF)) {
                 $searchTerm = '%' . $this->searchTerm . '%';
-                $query = $query->whereBetween('date',[$this->searchDF,$this->searchDT])
-                               ->orWhere('title', 'like', $searchTerm)
-                               ->orWhere('ordinance_number', 'like', $searchTerm)
-                               ->orWhere('tracking_level', 'like', $searchTerm)
-                               ->orWhere('keywords', 'like', $searchTerm)
-                               ->orWhere('author', 'like', $searchTerm);
+                $query = $query->whereBetween('date', [$this->searchDF, $this->searchDT])
+                        ->where(function ($query) use ($searchTerm) {
+                            $query->where('title', 'like', $searchTerm)
+                            ->orWhere('ordinance_number', 'like', $searchTerm)
+                            ->orWhere('tracking_level', 'like', $searchTerm)
+                            ->orWhere('keywords', 'like', $searchTerm)
+                            ->orWhere('author', 'like', $searchTerm);
+                });
             }else{
                 $searchTerm = '%' . $this->searchTerm . '%';
                 $query = $query->where('title', 'like', $searchTerm)
@@ -83,12 +85,14 @@ class Userview extends Component
             
             if (!empty($this->searchTerm)) {
                 $searchTerm = '%' . $this->searchTerm . '%';
-                $query = $query->whereBetween('date',[$this->searchDF,$this->searchDT])
-                               ->orWhere('title', 'like', $searchTerm)
-                               ->orWhere('ordinance_number', 'like', $searchTerm)
-                               ->orWhere('tracking_level', 'like', $searchTerm)
-                               ->orWhere('keywords', 'like', $searchTerm)
-                               ->orWhere('author', 'like', $searchTerm);
+                $query = $query->whereBetween('date', [$this->searchDF, $this->searchDT])
+                        ->where(function ($query) use ($searchTerm) {
+                            $query->where('title', 'like', $searchTerm)
+                            ->orWhere('ordinance_number', 'like', $searchTerm)
+                            ->orWhere('tracking_level', 'like', $searchTerm)
+                            ->orWhere('keywords', 'like', $searchTerm)
+                            ->orWhere('author', 'like', $searchTerm);
+                });
             }else{
                 $query = $query->whereBetween('date',[$this->searchDF,$this->searchDT]);
             }
