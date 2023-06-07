@@ -66,8 +66,6 @@ class OrdinanceEdit extends Component
 
     public function save()
     {
-
-        
         $this->validate([
             'ordinance_number' => 'required|unique:ordinances,ordinance_number,' . $this->ordinance_id,
             'title' => 'required',

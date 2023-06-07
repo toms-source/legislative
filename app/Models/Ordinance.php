@@ -14,8 +14,6 @@ class Ordinance extends Model
         'title',
         'tracking_level',
         'date',
-      
-        'file_path',
         'author',
         'keywords',
     ];
