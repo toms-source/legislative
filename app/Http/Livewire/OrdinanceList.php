@@ -56,8 +56,8 @@ class OrdinanceList extends Component
         
     }
 
-    public function deleteForm(){
-        $this->emit('ordinanceDelete');
+    public function deleteForm($id){
+        $this->emit('ordinanceDelete', $id);
     }
 
 
