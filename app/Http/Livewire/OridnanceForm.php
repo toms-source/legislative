@@ -38,7 +38,7 @@ class OridnanceForm extends Component
 
         $path = 'temp/' . uniqid() . '.jpg';
         Storage::put($path, $imageData);
-        
+
         $this->imagesDataUrls[] = $path;
     }
 
@@ -46,7 +46,7 @@ class OridnanceForm extends Component
     {
         // Create a new PDF
         $pdf = new \FPDF();
-    
+
         foreach ($this->imagesDataUrls as $path) {
             $pdf->AddPage();
             $pdf->Image(Storage::path($path), 10, 10, 180);
@@ -54,9 +54,17 @@ class OridnanceForm extends Component
         }
         $this->ordinance_number = 'ORD-' . rand(1000, 9999) . '-' . now()->format('y');
         // Save the PDF to a file
-        $pdfFilePath = 'files/' . $this->ordinance_number . '.pdf';
-        $pdf->Output('F', storage_path('app/public/' . $pdfFilePath));
-    
+
+        $directoryPath = 'public/files';
+
+        // If the directory doesn't exist, create it
+        if (!Storage::exists($directoryPath)) {
+            Storage::makeDirectory($directoryPath);
+        }
+
+        $pdfFilePath = $directoryPath . '/' . $this->ordinance_number . '.pdf';
+        $pdf->Output('F', storage_path('app/' . $pdfFilePath));
+
         // Create an Ordinance record in the database
         $ordinance = Ordinance::create([
             'ordinance_number' => $this->ordinance_number,
@@ -66,7 +74,7 @@ class OridnanceForm extends Component
             'author' => $this->author,
             'keywords' => $this->keywords,
         ]);
-    
+
         // Create an associated File record for the Ordinance
         $ordinance->files()->create([
             'file_path' => $pdfFilePath,
@@ -74,13 +82,13 @@ class OridnanceForm extends Component
             'last_action' => $this->last_action,
             'last_action_date' => now(),
         ]);
-    
+
         // Reset all the public properties after form submission
         $addedOrdinanceNumber = $this->ordinance_number;
         $this->reset(['imagesDataUrls', 'title', 'author', 'tracking_level', 'last_action', 'date', 'keywords', 'ordinance_number']);
         $this->emit('ordinanceAdded', $addedOrdinanceNumber, $ordinance->id);
     }
-    
+
 
     public function generateOrdinanceNumber()
     {

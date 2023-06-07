@@ -48,8 +48,8 @@
                                 Are you sure you want to delete this ordinance?
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal" wire:click="deleteOrdinance()">Yes</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                <button type="button" class="px-5 btn btn-outline-danger" data-dismiss="modal" wire:click="deleteOrdinance()">Yes</button>
+                                <button type="button" class="px-5 btn btn-outline-secondary" data-dismiss="modal">No</button>
                             </div>
                         </div>
                     </div>

@@ -1,6 +1,6 @@
 <div>
     <button type="button" class="btn btn-primary col-12" data-toggle="modal" data-target="#addordinance"><i
-            class="fa-solid fa-plus" style="color: #e6e6e6;"></i> ADD ORDINANCE</button>
+            class="fa-solid fa-plus" style="color: #e6e6e6;"></i> NEW ORDINANCE</button>
 
 
 
