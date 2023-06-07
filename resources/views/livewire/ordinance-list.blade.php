@@ -30,7 +30,7 @@
                         <td> 
                             <button class="fa fa-edit border-0" data-target="#editordinance" type="button" data-toggle="modal" wire:click="editOrdinance({{ $ordinance->id }})"></button>
                             <a href="{{ route('view-ordinance', $ordinance) }}"><i class="fa fa-eye"></i></a>
-                            <a wire:click="deleteForm()"><i class="fa-solid fa-trash-can" <i class="fa-solid fa-trash-can" style="color: #e61919;"></i></i></i></a>
+                            <a wire:click="deleteForm({{$ordinance->id}})"><i class="fa-solid fa-trash-can" <i class="fa-solid fa-trash-can" style="color: #e61919;"></i></i></i></a>
                         </td>
                     </tr>
 
