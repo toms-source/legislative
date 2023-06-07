@@ -58,12 +58,13 @@ class OrdinanceList extends Component
 
     public function deleteForm($id){
         $this->emit('ordinanceDelete', $id);
+        $this->idDelete = $id;
     }
 
 
-    public function deleteOrdinance($id){
+    public function deleteOrdinance(){
 
-        $this->idDelete = $id;
+       
         $id = '%' . $this->idDelete . '%';
         $this->ordinances = Ordinance::where('id', 'like', $id)->delete();
         $this->ordinances = Ordinance::with('files')->where('id', 'like', $id)->delete();

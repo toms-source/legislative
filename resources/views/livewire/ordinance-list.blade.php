@@ -30,7 +30,7 @@
                         <td> 
                             <button class="fa fa-edit border-0" data-target="#editordinance" type="button" data-toggle="modal" wire:click="editOrdinance({{ $ordinance->id }})"></button>
                             <a href="{{ route('view-ordinance', $ordinance) }}"><i class="fa fa-eye"></i></a>
-                            <a wire:click="deleteForm({{$ordinance->id}})"><i class="fa-solid fa-trash-can" <i class="fa-solid fa-trash-can" style="color: #e61919;"></i></i></i></a>
+                            <a wire:click="deleteForm({{ $ordinance->id }})"><i class="fa-solid fa-trash-can" <i class="fa-solid fa-trash-can" style="color: #e61919;"></i></i></i></a>
                         </td>
                     </tr>
 
@@ -48,7 +48,7 @@
                                 Are you sure you want to delete this ordinance?
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal" wire:click="deleteOrdinance({{ $ordinance->id }})">Yes</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" wire:click="deleteOrdinance()">Yes</button>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                             </div>
                         </div>
@@ -65,16 +65,17 @@
 </div>
 <script>
     document.addEventListener('livewire:load', function() {
-        window.livewire.on('ordinanceDelete', () => {
+        window.livewire.on('ordinanceDelete', (id) => {
             console.log('ordinanceAdded event received');
 
-            // document.getElementById('editordinance').classList.remove('show');
+            // document.getElementById('ordinanceDelete').classList.remove('show');
             // document.body.classList.remove('modal-open');
             // document.getElementsByClassName('modal-backdrop')[0].remove();
 
             var modalOrdinanceAdded = new bootstrap.Modal(document.getElementById(
                 'ordinanceDelete'));
             modalOrdinanceAdded.show();
+            console.log('ID:', id);
         });
     });
 </script>
