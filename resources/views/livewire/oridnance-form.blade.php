@@ -113,7 +113,7 @@
                                         @enderror
                                     </div>
 
-                                    <button type="submit" class="btn btn-success mt-3 col-12">Submit</button>
+                                    <button type="submit" class="btn btn-outline-success mt-3 col-12">Submit</button>
                                 </form>
                             </div>
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -186,17 +186,15 @@
                                         <span id="imageCounter"></span>
                                         <video id="video" width="100%" autoplay></video>
                                         <canvas id="canvas" style="display: none;"></canvas>
-
-                                        <button id="openCameraButton" class="btn btn-success mt-3">Open
-                                            Camera</button>
-
-                                        <button id="captureButton" class="btn btn-primary mt-3"
-                                            disabled>CaptureImage</button>
+                                        <div class="d-flex gap-3">
+                                            <button id="openCameraButton" class="btn btn-warning mt-3" style="width:100%;">Open Camera</button>
+                                            <button id="captureButton" class="btn btn-primary mt-3" style="width:100%;" disabled ></i>Capture Image</button>
+                                        </div>
                                     </div>
 
 
                                     <button type="submit" id="submitForm"
-                                        class="btn btn-success mt-3 col-12">Submit</button>
+                                        class="btn btn-outline-success mt-3 col-12">Submit</button>
 
 
                                 </form>

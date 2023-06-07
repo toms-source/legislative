@@ -1,8 +1,6 @@
 
 <div>
-<div class="form-group">
-    <input type="text" class="form-control" placeholder="Search" wire:model.debounce.100ms="searchTerm">
-</div>
+
 <hr class="hr"/>
 <div class="mt-3">
     <div class="row">
@@ -21,6 +19,10 @@
             @enderror
         </div>
     </div>
-        <button type="submit" class="btn btn-success mt-3 col-12" wire:click='searchDates'>Submit</button>
+        <button type="submit" class="btn btn-success mt-3 col-12" wire:click='searchDates'><i class="fa-solid fa-filter"></i>Filter Date</button>
+        
+</div>
+<div class="form-group mt-3">
+    <input type="text" class="form-control" placeholder="Search" wire:model.debounce.100ms="searchTerm">
 </div>
 </div>
