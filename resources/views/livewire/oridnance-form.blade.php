@@ -180,17 +180,27 @@
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
+                                    <label for="keywords">Images:</label>
+                                    <div class="text-center">
+                                 
+                                        <span id="imageCounter"></span>
+                                        <video id="video" width="100%" autoplay></video>
+                                        <canvas id="canvas" style="display: none;"></canvas>
+
+                                        <button id="openCameraButton" class="btn btn-success mt-3">Open
+                                            Camera</button>
+
+                                        <button id="captureButton" class="btn btn-primary mt-3"
+                                            disabled>CaptureImage</button>
+                                    </div>
+
+
                                     <button type="submit" id="submitForm"
                                         class="btn btn-success mt-3 col-12">Submit</button>
-                                </form>
-                                <div class="text-center">
-                                    <video id="video" width="100%" autoplay></video>
-                                    <canvas id="canvas" style="display: none;"></canvas>
 
-                                    <button id="openCameraButton" class="btn btn-success mt-3">Open Camera</button>
-                                    <button id="captureButton" class="btn btn-primary mt-3"
-                                        disabled>CaptureImage</button>
-                                </div>
+
+                                </form>
+
                             </div>
                         </div>
                     </div>
@@ -228,6 +238,7 @@
 
 
 <script>
+    let imageCounter = 0;
     let imagesDataUrls = [];
     const video = document.getElementById('video');
     const openCameraButton = document.getElementById('openCameraButton');
@@ -261,6 +272,8 @@
         canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
         let imageData = canvasElement.toDataURL('image/jpeg');
         @this.call('uploadImage', imageData);
+        imageCounter++;
+        document.getElementById("imageCounter").innerHTML = "Captured Page " + imageCounter;
     };
 </script>
 
@@ -289,5 +302,20 @@
             modalOrdinanceAdded.show();
         });
 
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var openCameraButton = document.getElementById('openCameraButton');
+        var captureButton = document.getElementById('captureButton');
+
+        openCameraButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            // Your logic to open the camera...
+        });
+
+        captureButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            // Your logic to capture the image...
+        });
     });
 </script>
