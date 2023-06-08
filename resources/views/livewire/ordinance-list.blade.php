@@ -3,11 +3,19 @@
         <table class="table table-striped table-bordered">
             <thead>
                 <tr class="text-center">
-                    <th>Ordinance Number</th>
-                    <th>Title</th>
-                    <th>Tracking Level</th>
-                    <th>Date of Upload</th>
-                    <th>Actions</th>
+                    <th wire:click="sortBy('ordinance_number')">Ordinance Number
+                        <i class="fas {{ $sortField === 'ordinance_number' ? ($sortDirection === 'asc' ? 'fa-sort-up' : 'fa-sort-down') : 'fa-sort' }}"></i>
+                    </th>
+                    <th wire:click="sortBy('title')">Title
+                        <i class="fas {{ $sortField === 'title' ? ($sortDirection === 'asc' ? 'fa-sort-up' : 'fa-sort-down') : 'fa-sort' }}"></i>
+                    </th>
+                    <th wire:click="sortBy('tracking_level')">Tracking Level
+                        <i class="fas {{ $sortField === 'tracking_level' ? ($sortDirection === 'asc' ? 'fa-sort-up' : 'fa-sort-down') : 'fa-sort' }}"></i>
+                    </th>
+                    <th wire:click="sortBy('date')">Date of Upload
+                        <i class="fas {{ $sortField === 'date' ? ($sortDirection === 'asc' ? 'fa-sort-up' : 'fa-sort-down') : 'fa-sort' }}"></i>
+                    </th>
+                    <th>Last Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,6 +47,8 @@
                 @endforeach
             </tbody>
         </table>
+        <div>{{ $ordinances->links('pagination::bootstrap-5') }}</div>
+        
     </div>
     <div class="modal fade" id="ordinanceDelete" tabindex="-1" role="dialog"
     aria-labelledby="ordinanceAddedModalLabel" aria-hidden="true">
