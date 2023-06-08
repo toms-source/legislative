@@ -34,31 +34,31 @@
                         </td>
                     </tr>
 
-                    <div class="modal fade" id="ordinanceDelete" tabindex="-1" role="dialog"
-                    aria-labelledby="ordinanceAddedModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="ordinanceAddedModalLabel">Ordinance Deletion</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                Are you sure you want to delete this ordinance?
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="px-5 btn btn-outline-danger" data-dismiss="modal" wire:click="deleteOrdinance()">Yes</button>
-                                <button type="button" class="px-5 btn btn-outline-secondary" data-dismiss="modal">No</button>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
                 @endforeach
             </tbody>
         </table>
     </div>
-    
+    <div class="modal fade" id="ordinanceDelete" tabindex="-1" role="dialog"
+    aria-labelledby="ordinanceAddedModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ordinanceAddedModalLabel">Ordinance Deletion</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this ordinance?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="px-5 btn btn-outline-danger" data-dismiss="modal" wire:click="deleteOrdinance()">Yes</button>
+                <button type="button" class="px-5 btn btn-outline-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
     
  
 
