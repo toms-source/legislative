@@ -47,7 +47,6 @@
                 @endforeach
             </tbody>
         </table>
-        <div>{{ $ordinances->links('pagination::bootstrap-5') }}</div>
         
     </div>
     <div class="modal fade" id="ordinanceDelete" tabindex="-1" role="dialog"

@@ -45,7 +45,7 @@
                 @endforeach
             </tbody>
         </table>
-          <div>{{ $ordinances->links('pagination::bootstrap-5') }}</div>
+         
            
     </div>
 </div>

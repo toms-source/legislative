@@ -4,7 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Ordinance;
-use Livewire\WithPagination;
+
 class OrdinanceList extends Component
 {
 
@@ -18,8 +18,8 @@ class OrdinanceList extends Component
     public $searchDT;
 
     protected $listeners = ['searchTermUpdated' => 'search', 'ordinanceAdded' => 'refreshList', 'searchDate' => 'searchDateBetween'];
-    use WithPagination;
-    
+
+
     //pass id to another components
     public function editOrdinance($ordinanceId)
     {
@@ -41,42 +41,15 @@ class OrdinanceList extends Component
         $this->sortDirection = 'asc';
         $this->searchDF = null;
         $this->searchDT = null;
-    
-        $this->resetPage();
+
     }
 
-
-    // public function search($searchTerm)
-    // {
-    //     $this->searchTerm = $searchTerm;
-    
-    //     $searchTerm = '%' . $this->searchTerm . '%';
-    //     $this->ordinances = Ordinance::where('title', 'like', $searchTerm)
-    //         ->orWhere('ordinance_number', 'like', $searchTerm)
-    //         ->orWhere('tracking_level', 'like', $searchTerm)
-    //         ->orWhere('keywords', 'like', $searchTerm)
-    //         ->orWhere('author', 'like', $searchTerm)
-    //         ->get();
-    // }
     public function search($searchTerm){
         $this->searchTerm = $searchTerm;
 
         $searchTerm = '%' . $this->searchTerm . '%';
-        $this->resetPage(); // Reset the pagination
     }
     
-    // public function searchDateBetween($searchDate){
-    //     $searchDF = $searchDate[0];
-    //     $searchDT = $searchDate[1];
-        
-    //     $this->ordinances = Ordinance::whereBetween('date', [$searchDF, $searchDT])
-    //     ->get();
-       
-    //     // $searchDF1 = Carbon::parse($this->$searchDF);
-    //     // $searchDT1 = Carbon::parse($this->$searchDT);
-       
-        
-    // }
     public function searchDateBetween($searchDate)
     {
         $this->searchDF = $searchDate[0];
@@ -100,7 +73,6 @@ class OrdinanceList extends Component
             $this->sortDirection = 'asc';
         }
 
-        $this->resetPage(); // Reset the pagination
     }
 
 
@@ -163,10 +135,9 @@ class OrdinanceList extends Component
             $query = $query->orderBy($this->sortField, $this->sortDirection);
         }
 
-        
 
         return view('livewire.ordinance-list', [
-            'ordinances' => $query->paginate(5),
+            'ordinances' => $query->get(),
         ]);
 
         // return view('livewire.ordinance-list', ['ordinances' => $this->ordinances]);
