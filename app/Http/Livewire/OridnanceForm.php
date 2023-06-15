@@ -49,7 +49,7 @@ class OridnanceForm extends Component
     
         foreach ($this->imagesDataUrls as $path) {
             $pdf->AddPage();
-            $pdf->Image(Storage::path($path), 10, 10, 180);
+            $pdf->Image(Storage::path($path), 10, 10, 190);
             Storage::delete($path);
         }
         $this->ordinance_number = 'ORD-' . rand(1000, 9999) . '-' . now()->format('y');
