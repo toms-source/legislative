@@ -75,9 +75,13 @@ class OridnanceForm extends Component
             'keywords' => $this->keywords,
         ]);
 
+
+
+        $pdfFilePath2 = 'files/' . $this->ordinance_number . '.pdf';
+
         // Create an associated File record for the Ordinance
         $ordinance->files()->create([
-            'file_path' => $pdfFilePath,
+            'file_path' => $pdfFilePath2,
             'version' => 1,  // initial version
             'last_action' => $this->last_action,
             'last_action_date' => now(),
