@@ -5,7 +5,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="myModalLabel">Edit Modal</h5>
+                        <h5 class="modal-title" id="myModalLabel">Edit Ordinance</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -85,7 +85,7 @@
                                     @enderror
                                 </div>
 
-                                <button type="submit" class="btn btn-success mt-3 col-12">Submit</button>
+                                <button type="submit" class="btn btn-outline-success mt-3 col-12">Submit</button>
                             </form>
                         </form>
                     </div>
