@@ -1,7 +1,5 @@
 ## Legislative Tracking System
 
-Note: Cloning a Laravel project from github doesn't include the packages in the composer as well as the .env file however you will get a .env.example which is a copy of the .env file
-
 How to run this project:
 
     1. Clone the github repo git clone https://github.com/toms-source/legislative
