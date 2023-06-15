@@ -4,7 +4,7 @@ How to run this project:
 
     1. Clone the github repo git clone https://github.com/toms-source/legislative
 
-    2. Open project in a terminal and go to the root folder cd bnd_v3
+    2. Open project in a terminal and go to the root folder
 
     3. Install dependencies composer install
 
