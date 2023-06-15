@@ -14,8 +14,6 @@ How to run this project:
 
     5. Install npm "npm install"
 
-    6. generate an app key "php artisan key:generate"
+    6. run the project "php artisan serve"
 
-    7. run the project "php artisan serve"
-
-on an other terminal: npm run dev
+    7. on an other terminal: npm run dev
