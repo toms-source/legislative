@@ -4,10 +4,11 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Ordinance;
-
+use Livewire\WithPagination;
 
 class Userview extends Component
 {
+    use WithPagination;
     public $searchTerm = '';
     public $sortField;
     public $sortDirection = 'asc';
@@ -15,7 +16,7 @@ class Userview extends Component
     public $searchDT;
 
     protected $listeners = ['searchTermUpdated' => 'search', 'ordinanceAdded' => 'refreshList', 'searchDate' => 'searchDateBetween'];
-
+    protected $paginationTheme = 'bootstrap';
 
     public function editOrdinance($ordinanceId)
     {
@@ -103,7 +104,7 @@ class Userview extends Component
 
 
         return view('livewire.userview', [
-            'ordinances' => $query->get(),
+            'ordinances' => $query->paginate(5),
         ]);
     }
 }

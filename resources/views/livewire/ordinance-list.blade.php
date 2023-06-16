@@ -47,7 +47,7 @@
                 @endforeach
             </tbody>
         </table>
-        
+        <div>{{ $ordinances->links() }}</div>
     </div>
     <div class="modal fade" id="ordinanceDelete" tabindex="-1" role="dialog"
     aria-labelledby="ordinanceAddedModalLabel" aria-hidden="true">

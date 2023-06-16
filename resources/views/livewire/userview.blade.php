@@ -45,7 +45,7 @@
                 @endforeach
             </tbody>
         </table>
-         
+        <div>{{ $ordinances->links() }}</div>
            
     </div>
 </div>

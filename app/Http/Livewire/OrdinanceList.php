@@ -4,10 +4,11 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Ordinance;
+use Livewire\WithPagination;
 
 class OrdinanceList extends Component
 {
-
+    use WithPagination;
     public $searchTerm = '';
     public $idDelete = '';
     // public $ordinances;
@@ -18,7 +19,7 @@ class OrdinanceList extends Component
     public $searchDT;
 
     protected $listeners = ['searchTermUpdated' => 'search', 'ordinanceAdded' => 'refreshList', 'searchDate' => 'searchDateBetween'];
-
+    protected $paginationTheme = 'bootstrap';
 
     //pass id to another components
     public function editOrdinance($ordinanceId)
@@ -137,7 +138,7 @@ class OrdinanceList extends Component
 
 
         return view('livewire.ordinance-list', [
-            'ordinances' => $query->get(),
+            'ordinances' => $query->paginate(5),
         ]);
 
         // return view('livewire.ordinance-list', ['ordinances' => $this->ordinances]);
